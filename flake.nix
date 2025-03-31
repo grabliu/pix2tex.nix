@@ -12,10 +12,27 @@
   outputs =
     inputs@{ self, nixpkgs, ... }:
     let
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      pkgs = nixpkgs.legacyPackages.aarch64-darwin;
       pix2tex = pkgs.callPackage ./nix { inherit inputs; };
     in
     {
-      packages.x86_64-linux.default = pix2tex;
+      packages.aarch64-darwin = {
+        default = pix2tex;
+        all = pix2tex.overrideAttrs (old: {
+          propagatedBuildInputs = old.propagatedBuildInputs ++ (old.passthru.optional-dependencies.all or []);
+        });
+        api = pix2tex.overrideAttrs (old: {
+          propagatedBuildInputs = old.propagatedBuildInputs ++ (old.passthru.optional-dependencies.api or []);
+        });
+        gui = pix2tex.overrideAttrs (old: {
+          propagatedBuildInputs = old.propagatedBuildInputs ++ (old.passthru.optional-dependencies.gui or []);
+        });
+        highlight = pix2tex.overrideAttrs (old: {
+          propagatedBuildInputs = old.propagatedBuildInputs ++ (old.passthru.optional-dependencies.highlight or []);
+        });
+        train = pix2tex.overrideAttrs (old: {
+          propagatedBuildInputs = old.propagatedBuildInputs ++ (old.passthru.optional-dependencies.train or []);
+        });
+      };
     };
 }

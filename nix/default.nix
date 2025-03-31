@@ -9,9 +9,12 @@ let
   python3 = pkgs.python312.override {
     packageOverrides = (
       final: prev: {
-        opencv-python-headless = callPackage ./opencv-python-headless.nix { };
+        # opencv-python-headless = callPackage ./opencv-python-headless.nix { };
         x-transformers = callPackage ./x-transformers.nix { };
         timm = callPackage ./timm.nix { };
+        albumentations = callPackage ./albumentations.nix { };
+        screeninfo = callPackage ./screeninfo.nix { };
+        pynput = callPackage ./pynput.nix { };
       }
     );
   };
@@ -33,8 +36,8 @@ python3.pkgs.buildPythonApplication {
     transformers
     x-transformers
     timm
-    einops
     albumentations
+    einops
     tqdm
     requests
     tokenizers
