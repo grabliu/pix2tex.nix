@@ -15,7 +15,7 @@ python3.pkgs.buildPythonPackage rec {
     owner = "ronaldoussoren";
     repo = "pyobjc";
     tag = "v${version}";
-    hash = "sha256-Kj1CH1+RYTFszao9G7P3fnsgBjTcvsq4ZpxdjHzQ520=";
+    hash = "sha256-RhB0Ht6vyDxYwDGS+A9HZL9ySIjWlhdB4S+gHxvQQBg=";
   };
 
   sourceRoot = "source/pyobjc-framework-CoreText";
